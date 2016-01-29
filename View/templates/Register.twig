@@ -1,0 +1,65 @@
+{% extends 'MainTemplate.twig' %}
+{% block title %}Inscription{% endblock %}
+{% block content %}
+
+    <div class="container">
+
+        <!-- Contact with Map - START -->
+        <div class="container">
+            <div class="rowContact">
+                <div class="col-md-6">
+                    <div class="well well-sm">
+                        <form class="form-horizontal" method="POST" action="Index.php?action=registration">
+                            <fieldset>
+                                <legend class="text-center header">Rejoignez nous !</legend>
+                                <div class="form-group">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <input name="pseudo" type="text" placeholder="login" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <input name="email" type="text" placeholder="example@example.com" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <label>Mot de passe :</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <input name="pass" type="password" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <label>Confirmez mot de passe :</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <input name="confpass" type="password" class="form-control" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">S'inscrire</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}

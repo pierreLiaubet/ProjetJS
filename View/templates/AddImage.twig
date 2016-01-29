@@ -1,0 +1,19 @@
+{% extends 'mainTemplate.twig' %}
+{% block title %}Ajouter une image{% endblock %}
+{% block content %}
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+        <br/>
+        <form method="POST" action="Index.php?action=ajouterImg">
+            <label>Titre :</label>
+            <label>{{ article.titre }}</label>
+            <input style="display: none" type="text" name="titreArticle" value="{{ article.titre }}" />
+            <br/>
+            <label>Image : </label>
+            <input type="file" name="image" required/>
+
+            <br/>
+
+            <input type="submit" value="Ajouter"/>
+        </form>
+    </div>
+{% endblock %}

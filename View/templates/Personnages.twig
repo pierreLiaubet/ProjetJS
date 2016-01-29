@@ -1,0 +1,35 @@
+{% extends 'MainTemplate.twig' %}
+{% block title %}Sur la série{% endblock %}
+{% block content %}
+    <br/>
+    <br/>
+    <div class="container">
+    {% if role == 'admin' %}
+        <form method="POST" action="Index.php?action=ajouterPersonnageScreen">
+            <button type="submit" >Ajouter un petit nouveau</button>
+        </form>
+    {% endif %}
+        {% for personnage in personnages %}
+            <div class="row featurette" style="margin-top:20px;background-color: lightgray; box-shadow: 5px 5px 8px #0f0f0f; border-radius: 20px">
+                <div class="col-md-7">
+                    <h3 class="featurette-heading" style="margin: 20px">{{ personnage.nom }}
+                    {% if role == 'admin' %}
+                        <form method="POST" action="Index.php?action=modifierPersoScreen">
+                            <input style="display: none" type="text" name="nom" value="{{ personnage.nom }}"/>
+                            <input style="display: none" type="text" name="img" value="{{ personnage.image }}"/>
+                            <input style="display: none" type="text" name="description" value="{{ personnage.description }}"/>
+                            <input type="submit" value="Modifer"/>
+                        </form>
+                        <form method="POST" action="Index.php?action=suprimmerPerso">
+                            <input style="display: none" type="text" name="nom" value="{{ personnage.nom }}"/>
+                            <input type="submit" value="Supprimer"/>
+                        </form>
+                        {% endif %}
+                    </h3>
+                    <p class="lead">{{ personnage.description }}</p>
+                </div>
+                <div class="col-md-5"><img src="{{ personnage.image }}" width="400px"></div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

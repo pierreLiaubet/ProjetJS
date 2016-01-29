@@ -1,0 +1,80 @@
+{% extends 'SwitchPages.twig' %}
+{% block title %}Accueil{% endblock %}
+{% block content %}
+     <div class="container">
+     {% for article in articles %}
+         <div class="row featurette" style="margin-top: 20px; background-color: lightgray; box-shadow: 5px 5px 8px #0f0f0f; border-radius: 20px">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">{{ article.titre }}
+                    {% if role == 'admin' %}
+                    <form method="POST" action="Index.php?action=supprimerArticle">
+                        <input style="display: none" type="text" name="titreArticle" value="{{ article.titre }}" />
+                        <button type="submit">Supprimer Article</button>
+                    </form>
+                        {% if article.image != null %}
+                            <form method="POST" action="Index.php?action=suppImg">
+                                <input style="display: none" type="text" name="titreArticle" value="{{ article.titre }}" />
+
+                                <button type="submit">supprimer image</button>
+                            </form>
+
+                        {% endif %}
+                        {% if article.image== null %}
+                        <form method="POST" action="Index.php?action=viewAddImage">
+                            <input style="display: none" type="text" name="titreArticle" value="{{ article.titre }}" />
+
+                            <button type="submit">Ajouter image</button>
+                        </form>
+                        {% endif %}
+                    {% endif %}
+                </h2>
+                <p class="lead"> {{ article.content }}</p>
+                <h4>Commentaires :</h4>
+                {% for comment in comments %}
+                     <div style="background-color: gray; box-shadow: 5px 5px 8px #0f0f0f; border-radius: 10px">
+                         {% if comment.titreArticle == article.titre %}
+                             <p class="lead" style="font-size: 15px;margin: 5px" >{{ comment.pseudo }}</p>
+                             <p class="lead" style="font-size: 15px;margin: 5px">
+                                 {{ comment.content }}
+                                 {% if session['role'] == 'admin' %}
+                                    <br/>
+                                    <form method="POST" action="index.php?action=supprCom">
+                                        <input type="text" style="display: none" name="pseudo" value="{{ comment.pseudo }}"/>
+                                        <input type="text" style="display: none" name="content" value="{{ comment.content }}"/>
+
+                                        <button type="submit"> - </button>
+                                     </form>
+                                 {% endif %}
+                                 {% if (role == 'registered' or role == 'admin') and comment.pseudo == login %}
+                                <form method="POST" action="index.php?action=modifierCommViews">
+                                    <input type="text" style="display: none" name="pseudo" value="{{ comment.pseudo }}"/>
+                                    <input type="text" style="display: none" name="content" value="{{ comment.content }}"/>
+                                    <button type="submit"> modifier </button>
+                                </form>
+                            {% endif %}
+                             </p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                    <div>
+                        {% if role == 'admin' or role == 'registered' %}
+                            <form method="POST" action="index.php?action=comment"><input style="display: none" name="titreArticle" value="{{ article.titre }}" />
+                                <input type="hidden" name="pseudo" value="{{ login }}" >
+                                <br/>
+                                <label>Commentaire : </label>
+                                <textarea type="textarea" name="commentaire" id="commentaire" rows="2" cols="100" required></textarea>
+                                <button type="submit">Commenter</button>
+                            </form>
+
+                            {% else %}
+                                <p>Pour commenter connectez vous ou inscrivez vous.</p>
+                            {% endif %}
+                    </div>
+            </div>
+            <div class="col-md-5">
+                 <img class="featurette-image img-responsive center-block" src="{{ article.image }}" alt="Generic placeholder image">
+            </div>
+         </div>
+     {% endfor %}
+    </div>
+{% endblock %}

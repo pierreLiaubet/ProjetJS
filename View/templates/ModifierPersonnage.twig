@@ -1,0 +1,22 @@
+{% extends 'mainTemplate.twig' %}
+{% block title %}Modifer personnage{% endblock %}
+{% block content %}
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+        <br/>
+        <form method="POST" action="Index.php?action=modifierPerso">
+            <label>Nom : </label>
+            <label>{{ perso.nom }}</label>
+            <input style="display: none" type="text" name="nom" value="{{ perso.nom }}"/>
+            <br/>
+            <label>Image : </label>
+            <img src="{{ perso.image }}" width="100px">
+            <br/>
+            <label>Contenu :</label>
+            <br/>
+            <br/>
+            <textarea type="textarea" name="description" rows="25" cols="100" > {{ perso.description }} </textarea>
+            <input type="submit" value="Modifier"/>
+        </form>
+
+    </div>
+{% endblock %}

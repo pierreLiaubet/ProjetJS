@@ -1,0 +1,19 @@
+{% extends 'mainTemplate.twig' %}
+{% block title %}Nouveau personnage{% endblock %}
+{% block content %}
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+        <br/>
+        <form method="POST" action="Index.php?action=ajouterPerso">
+            <label>Titre : </label>
+            <input type="text" name="nom" required/>
+            <br/>
+            <label>Image : </label>
+            <input type="file" name="image" required/>
+            <br/>
+            <label>Contenu :</label>
+            <br/>
+            <textarea type="textarea" name="description" rows="25" cols="100" required></textarea>
+            <input type="submit" value="Ajouter"/>
+        </form>
+    </div>
+{% endblock %}

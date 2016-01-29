@@ -1,0 +1,19 @@
+{% extends 'mainTemplate.twig' %}
+{% block title %}Modifer personnage{% endblock %}
+{% block content %}
+    <div class="container" xmlns="http://www.w3.org/1999/html">
+        <br/>
+        <form method="POST" action="Index.php?action=modifComm">
+            <label>Pseudo : </label>
+            <label>{{ comment.pseudo }}</label>
+            <input style="display: none" type="text" name="pseudo" value="{{ comment.pseudo }}"/>
+            <br/>
+            <label>Commentaire :</label>
+            <br/>
+            <br/>
+            <textarea type="textarea" name="content" rows="25" cols="100" > {{ comment.content }} </textarea>
+            <input type="submit" value="Modifier"/>
+        </form>
+
+    </div>
+{% endblock %}

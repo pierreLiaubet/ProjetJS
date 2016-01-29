@@ -1,0 +1,14 @@
+{% extends 'mainTemplate.twig' %}
+{% block title %}Erreur{% endblock %}
+{% block content %}
+    <div class="container">
+    <h1>Il y a eu une/des erreur(s) de rencontrée(s) : </h1>
+    <div>
+        {{ session['admin'] }}
+        {% for error in errors  %}
+            <h2> {{ error }}</h2>
+            <br/>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'MainTemplate.twig' %}
+{% block pages %}
+    <div class="text-center col-lg-12">
+        <ul class="pagination">
+            {% if current != 1 %}
+                <li class="previous"><a href="Index.php?current={{ current - 1 }}"><span class="glyphicon glyphicon-backward"></span>Precedent</a></li>
+            {% endif %}
+            {% for i in 1..nbTotal %}
+                {% if current == i %}
+                    <li class="active"><a href="Index.php?current={{ i }}">{{ i }}</a></li>
+                {% else %}
+                    <li><a href="Index.php?current={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if current != nbTotal %}
+                <li class="next"><a href="Index.php?current={{ current + 1 }}"><span class="glyphicon glyphicon-forward"></span>Suivant</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
